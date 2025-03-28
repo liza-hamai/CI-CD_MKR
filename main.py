@@ -1,5 +1,6 @@
 import os
 
+
 def read_file(file_path):
     """Зчитує рядки з файлу та повертає їх у вигляді множини."""
     try:
@@ -8,6 +9,7 @@ def read_file(file_path):
     except FileNotFoundError:
         print(f"Файл {file_path} не знайдено.")
         return set()
+
 
 def compare_files(file1, file2):
     """Порівнює вміст двох файлів і повертає спільні та унікальні рядки."""
@@ -19,11 +21,13 @@ def compare_files(file1, file2):
 
     return common_lines, different_lines
 
+
 def write_to_file(file_path, lines):
     """Записує рядки у файл."""
     with open(file_path, 'w', encoding='utf-8') as file:
         for line in sorted(lines):
             file.write(line + '\n')
+
 
 def main():
     """Основна функція для порівняння файлів та запису результатів."""
