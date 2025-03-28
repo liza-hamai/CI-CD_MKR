@@ -24,3 +24,20 @@ def write_to_file(file_path, lines):
     with open(file_path, 'w', encoding='utf-8') as file:
         for line in sorted(lines):
             file.write(line + '\n')
+
+def main():
+    """Основна функція для порівняння файлів та запису результатів."""
+    file1 = 'file1.txt'
+    file2 = 'file2.txt'
+    same_file = 'same.txt'
+    diff_file = 'diff.txt'
+
+    common, different = compare_files(file1, file2)
+
+    write_to_file(same_file, common)
+    write_to_file(diff_file, different)
+
+    print(f"Результати збережено у {same_file} та {diff_file}.")
+
+if __name__ == "__main__":
+    main()
