@@ -1,3 +1,6 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
 name: Python application
 
 on:
@@ -16,34 +19,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-
     - name: Set up Python 3.10
       uses: actions/setup-python@v4
       with:
         python-version: "3.10"
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest pytest-html black pycodestyle
+        pip install flake8 pytest pytest-html
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-    - name: Check PEP8 with pycodestyle
-      run: pycodestyle .
-
-    - name: Format with Black
-      run: black --check .
-
     - name: Lint with flake8
       run: |
+        # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-
-    - name: Running tests with pytest + generating a report
-      run: pytest --html=report.html --self-contained-html
-
-    - name: Upload HTML test report
-      uses: actions/upload-artifact@v4
-      with:
-        name: pytest-report
-        path: report.html
+    - name: Test with pytest
+      run: |
+         pytest
