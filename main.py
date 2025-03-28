@@ -27,8 +27,8 @@ def write_to_file(file_path, lines):
 
 def main():
     """Основна функція для порівняння файлів та запису результатів."""
-    file1 = 'file1.txt'
-    file2 = 'file2.txt'
+    file1 = 'random_text_1.txt'
+    file2 = 'random_text_2.txt'
     same_file = 'same.txt'
     diff_file = 'diff.txt'
 
